@@ -80,13 +80,21 @@ const Operation = Object.freeze({
 })
 
 new Executor(reader, console.log).execute([
-  Operation.read({
+  {
+    type: 'read',
     params: [{ id: 15 }],
-    effect: { fail: Operation.noop(), success: Operation.log('name') }
-  }),
-  Operation.match({
+    effect: {
+      fail: { type: 'noop', params: [], effect: {} },
+      success: { type: 'log', params: [{ naem: null }], effect: {} }
+    }
+  },
+  {
+    type: 'match',
     params: [{ name: 'marcus' }],
-    effect: { fail: Operation.noop(), success: Operation.log('age') }
-  })
+    effect: {
+      fail: { type: 'noop', params: [], effect: {} },
+      success: { type: 'log', params: [{ age: null }], effect: {} }
+    }
+  }
 ]);
 

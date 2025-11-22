@@ -5,16 +5,16 @@ class Integer {
     this.#value = a
   }
   add(a: Integer){
-    return new Integer(this.#value + a.#value)
+    return new Integer(this.#value + a.get())
   }
 
   div(a: Integer){
     // todo we might want to handle div by 0
-    return new Integer(this.#value/a.#value)
+    return new Integer(this.#value/ a.get())
   }
 
   gt(a:Integer){
-    return this.#value > a.#value
+    return this.#value > a.get()
   }
 
   get(): number{
