@@ -32,7 +32,7 @@ class Monad {
 // console.log('Sum:', +sum1);
 
 const add = (a) => (b) => a + b
-
+const partial = fn => arg => fn.bind(null, arg)
 // const logSum = Monad.of(console.log.bind(console, 'Sum:'))
 const log = Monad
   .of(console.log)
@@ -46,7 +46,7 @@ const res = Monad
 
 
 log
-  .map(fn => fn.bind(console, 'Sum:'))
+  .map(partial('Sum:'))
   .ap(res)
 
 // ------------- Showcase usage of chain
@@ -61,7 +61,7 @@ const resMon = Monad
 
 
 log
-  .map(fn => fn.bind(console, 'Sum monadic:'))
+  .map(partial('Sum monadic:'))
   .ap(resMon)
 
 // ------------- Showcase usage of pipe
@@ -80,5 +80,5 @@ const resPipe = pipe(
 )
 
 log
-  .map(fn => fn.bind(console, 'Sum pipe:'))
+  .map(partial('Sum pipe:'))
   .ap(resPipe)
